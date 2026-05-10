@@ -250,86 +250,12 @@
         }
       }
 
-      .intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-
-  background: black;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-/* VIDEO FULLSCREEN */
-.intro-screen video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* BUTTON AREA */
-.intro-content {
-  position: absolute;
-  bottom: 80px;
-
-  opacity: 0;
-  transform: translateY(20px);
-
-  transition: 0.5s ease;
-}
-
-/* SHOW BUTTON */
-.intro-screen.show-btn .intro-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* BUTTON STYLE */
-#enterBtn {
-  padding: 14px 28px;
-
-  border: none;
-  border-radius: 14px;
-
-  background: linear-gradient(135deg, #00bfff, #0084b8);
-
-  color: white;
-
-  font-size: 1rem;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  box-shadow: 0 0 25px rgba(0,191,255,0.3);
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+     
       
     </style>
   </head>
 
   <body>
-
-        <div id="introScreen" class="intro-screen">
-      <video id="introVideo" autoplay muted playsinline>
-        <source src="mp4/VideoNQZIndo.mp4" type="video/mp4" />
-        Your browser does not support video.
-      </video>
-
-      <!-- BUTTON MUNCUL SETELAH VIDEO SELESAI -->
-      <div class="intro-content" id="introContent">
-        <button id="enterBtn">
-          <i class="fa-solid fa-gamepad"></i>
-          Buka Web Guild
-        </button>
-      </div>
-    </div>
     
     <!-- ================= NAVBAR ================= -->
     <header class="header">
