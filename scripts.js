@@ -92,3 +92,23 @@ contactForm.addEventListener("submit", (e) => {
 
   alert("Your message has been successfully sent!");
 });
+
+// Modal Video
+const introVideo = document.getElementById("introVideo");
+const introScreen = document.getElementById("introScreen");
+const enterBtn = document.getElementById("enterBtn");
+
+// saat video selesai
+introVideo.addEventListener("ended", () => {
+  introScreen.classList.add("show-btn");
+});
+
+// klik tombol masuk website
+enterBtn.addEventListener("click", () => {
+  introScreen.style.display = "none";
+  document.body.style.overflow = "auto";
+});
+
+// lock scroll saat intro
+document.body.style.overflow = "hidden";
+
