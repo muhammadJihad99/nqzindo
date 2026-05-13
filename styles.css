@@ -181,6 +181,78 @@ body {
   z-index: -1;
 }
 
+/* ================= DROPDOWN ================= */
+.nav-item {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: #0f172a;
+  border-radius: 10px;
+
+  min-width: 180px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: 0.3s ease;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 12px 15px;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.dropdown-link:hover {
+  background: rgba(0, 191, 255, 0.2);
+  color: #00bfff;
+}
+
+/* ICON ROTATE */
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+
+@media screen and (max-width: 900px) {
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+
+    display: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .dropdown-menu.active {
+    display: block;
+  }
+}
+
 /* ACTIVE LINE */
 .nav-link::after {
   content: "";
@@ -2557,4 +2629,187 @@ body {
   .footer-bottom {
     font-size: 0.9rem;
   }
+}
+
+/* Old Teams */
+.oldteams-slider{
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 20px 10px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.oldteams-slider::-webkit-scrollbar{
+  display: none;
+}
+
+/* CARD */
+.oldteam-card{
+  min-width: 220px;
+  height: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.oldteam-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: 0.4s;
+}
+
+.oldteam-card:hover img{
+  transform: scale(1.15);
+}
+
+/* OVERLAY */
+.oldteam-overlay{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  color: #fff;
+}
+
+.oldteam-overlay h3{
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.oldteam-overlay span{
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* DESKTOP */
+@media (min-width: 900px){
+  .oldteam-card{
+    min-width: 260px;
+    height: 340px;
+  }
+}
+
+/* MOBILE SWIPE ENHANCEMENT */
+@media (max-width: 768px){
+  .oldteam-card{
+    min-width: 180px;
+    height: 260px;
+  }
+}
+
+/* ================= LIGHTBOX ================= */
+.oldteam-lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 99999;
+}
+
+.oldteam-lightbox.show{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* IMAGE */
+.lightbox-content{
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  animation: zoomIn 0.3s ease;
+}
+
+.lightbox-content img{
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* INFO */
+.lightbox-info{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  color: white;
+  border-radius: 0 0 20px 20px;
+}
+
+.lightbox-info h3{
+  font-size: 1.4rem;
+}
+
+.lightbox-info span{
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* BUTTON */
+.lightbox-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lightbox-btn:hover{
+  background: rgba(0,191,255,0.25);
+}
+
+.lightbox-btn.prev{ left: 30px; }
+.lightbox-btn.next{ right: 30px; }
+
+/* CLOSE */
+.lightbox-close{
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+}
+
+/* ANIMATION */
+@keyframes zoomIn{
+  from{ transform: scale(0.8); opacity: 0; }
+  to{ transform: scale(1); opacity: 1; }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .lightbox-btn{
+    width: 45px;
+    height: 45px;
+  }
+
+  .lightbox-btn.prev{ left: 10px; }
+  .lightbox-btn.next{ right: 10px; }
 }
