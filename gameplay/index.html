@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gameplay Archive</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #0b1220;
+        color: #fff;
+      }
+
+      /* HEADER */
+      .header {
+        text-align: center;
+        padding: 60px 20px 30px;
+      }
+
+      .header h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.2rem;
+      }
+
+      .header p {
+        opacity: 0.7;
+        margin-top: 10px;
+      }
+
+      /* GRID */
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        padding: 30px;
+      }
+
+      /* CARD */
+      .video-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        transition: 0.3s;
+      }
+
+      .video-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .video-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        filter: brightness(0.75);
+        transition: 0.3s;
+      }
+
+      .video-card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* PLAY BUTTON */
+      .play-icon {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+
+        font-size: 1.1rem;
+
+        background: rgba(0, 191, 255, 0.25);
+        padding: 10px;
+
+        border-radius: 10px;
+
+        backdrop-filter: blur(6px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: 0.3s ease;
+      }
+
+      /* INFO */
+      .video-info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      }
+
+      .video-info h3 {
+        font-size: 1rem;
+      }
+
+      .video-info span {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .video-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .video-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+          padding: 15px;
+        }
+
+        .video-card img {
+          height: 160px;
+        }
+      }
+
+      /* MODAL */
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+
+      .modal video {
+        width: 80%;
+        border-radius: 12px;
+      }
+
+      .modal.show {
+        display: flex;
+      }
+
+      /* CLOSE BUTTON MODAL */
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+
+        width: 44px;
+        height: 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 12px;
+
+        font-size: 1.2rem;
+        cursor: pointer;
+
+        color: #fff;
+
+        transition: 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      /* HOVER EFFECT */
+      .close:hover {
+        background: rgba(255, 50, 50, 0.2);
+        color: #ff3b3b;
+        transform: scale(1.05);
+      }
+
+      .close-page {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        text-decoration: none;
+        width: 45px;
+        height: 45px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        border-radius: 12px;
+
+        color: #fff;
+        font-size: 1.2rem;
+
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+
+        transition: 0.25s ease;
+      }
+
+      .close-page:hover {
+        background: rgba(255, 60, 60, 0.25);
+        color: #ff3b3b;
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <a href="#" class="close-page" onclick="closePage()">
+        <i class="fa-solid fa-xmark"></i>
+      </a>
+      <h1>Gameplay Archive</h1>
+      <p>Rekaman gameplay member dan Tournament NQZ INDO</p>
+    </div>
+
+    <!-- GRID -->
+    <div class="video-grid">
+      <!-- CARD 1 -->
+      <div
+        class="video-card"
+        onclick="openVideo('../video/TournameFackBoy.mp4')"
+      >
+        <img src="../images/TeamFackBoy.png" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Tournamen Team Fackboy</h3>
+          <span>Team FackBoy</span>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div
+        class="video-card"
+        onclick="openVideo('../video/gameplayNQZ.Threep.mp4')"
+      >
+        <img src="../members/NQZ.Threep.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Game PLay</h3>
+          <span>NQZ.Threep</span>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div
+        class="video-card"
+        onclick="openVideo('../video/GamePlayNQZ.Jandaa.mp4')"
+      >
+        <img src="../members/NQZ.Janda.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Game PLay</h3>
+          <span>NQZ.Jandaa</span>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div
+        class="video-card"
+        onclick="openVideo('../video/GamePlayNQZ.Danzz.mp4')"
+      >
+        <img src="../images/NQZINDOLogo.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Game PLay</h3>
+          <span>NQZ.Danzz</span>
+        </div>
+      </div>
+
+      <div
+        class="video-card"
+        onclick="openVideo('../video/GamePlayNQZ.Yunaa.mp4')"
+      >
+        <img src="../membersold/NQZ.Yuna.png" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Game PLay</h3>
+          <span>NQZ.Yunaaa</span>
+        </div>
+      </div>
+
+      <div
+        class="video-card"
+        onclick="openVideo('../video/TournameFackBoy2.mp4')"
+      >
+        <img src="../images/TeamFackBoy.png" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Tournmet</h3>
+          <span> Team Fackboy</span>
+        </div>
+      </div>
+
+      <div
+        class="video-card"
+        onclick="openVideo('../video/momenttourname.mp4')"
+      >
+        <img src="../images/NQZINDOLogo.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Moment Tournamen</h3>
+          <span>NQZ.Threep</span>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="openVideo('../video/moment.mp4')">
+        <img src="../images/NQZINDOLogo.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Moment Tournamen</h3>
+          <span>NQZ.INDO</span>
+        </div>
+      </div>
+
+      <div
+        class="video-card"
+        onclick="openVideo('../video/GamePlayNQZ.ii.mp4')"
+      >
+        <img src="../images/NQZINDOLogo.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Game PLay</h3>
+          <span>NQZ.ii</span>
+        </div>
+      </div>
+
+      <div
+        class="video-card"
+        onclick="openVideo('../video/GamePlayNQZ.Jiiieeey.mp4')"
+      >
+        <img src="../members/NQZ.Jiiieeey.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Game PLay</h3>
+          <span>NQZ.Jiiieeey</span>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="openVideo('../video/momentBooyah.mp4')">
+        <img src="../images/NQZINDOLogo.jpeg" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Moment Booyah</h3>
+          <span>NQZ.INDO</span>
+        </div>
+      </div>
+
+      <div
+        class="video-card"
+        onclick="openVideo('../video/squadTeamBegal.mp4')"
+      >
+        <img src="../images/TeamBegal.png" />
+        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="video-info">
+          <h3>Teams Begal</h3>
+          <span>NQZ.INDO</span>
+        </div>
+      </div>
+
+      <!-- tambahan (bisa lanjut sampai banyak video) -->
+    </div>
+
+    <!-- MODAL VIDEO -->
+    <div class="modal" id="modal">
+      <div class="close" onclick="closeVideo()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+
+      <video id="videoPlayer" controls></video>
+    </div>
+
+    <script>
+      const modal = document.getElementById("modal");
+      const player = document.getElementById("videoPlayer");
+
+      function openVideo(src) {
+        player.src = src;
+        modal.classList.add("show");
+      }
+
+      function closeVideo() {
+        modal.classList.remove("show");
+        player.pause();
+        player.src = "";
+      }
+      //   Close
+      function closePage() {
+        window.location.href = "../index.html";
+      }
+    </script>
+  </body>
+</html>
